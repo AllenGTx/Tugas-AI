@@ -10,10 +10,10 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom Styling with Cinema Theme, Cinefy Branding, Perfectly Centered Background & Staggered Animations
+# Responsive CSS: Horizontal scroll on PC, sleek compact design on Mobile, modal optimized
 st.markdown("""
 <style>
-    /* Fixed & Centered Cinema Auditorium Background */
+    /* Fixed & Centered Cinema Background */
     .stApp {
         background: linear-gradient(rgba(8, 10, 15, 0.88), rgba(8, 10, 15, 0.94)), 
                     url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop");
@@ -25,33 +25,14 @@ st.markdown("""
         font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     }
 
-    /* Staggered Fade & Slide In Animations */
-    @keyframes slideUpFade {
-        0% {
-            opacity: 0;
-            transform: translateY(28px) scale(0.97);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    .anim-card-1 { animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .anim-card-2 { animation: slideUpFade 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .anim-card-3 { animation: slideUpFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .anim-card-4 { animation: slideUpFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .anim-card-5 { animation: slideUpFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
     /* Cinefy Brand Header */
     .brand-container {
         text-align: center;
-        padding: 24px 10px 8px 10px;
-        animation: slideUpFade 0.5s ease;
+        padding: 20px 10px 8px 10px;
     }
 
     .brand-tag-top {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         letter-spacing: 5px;
         text-transform: uppercase;
         color: #94a3b8;
@@ -60,7 +41,7 @@ st.markdown("""
     }
 
     .brand-title {
-        font-size: 3.8rem;
+        font-size: 3.4rem;
         font-weight: 900;
         letter-spacing: 6px;
         color: #e50914;
@@ -70,40 +51,39 @@ st.markdown("""
     }
 
     .brand-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: #f1f5f9;
-        margin-top: 6px;
-        margin-bottom: 6px;
+        margin-top: 4px;
+        margin-bottom: 4px;
     }
 
     .brand-desc {
-        font-size: 0.92rem;
+        font-size: 0.88rem;
         color: #94a3b8;
-        letter-spacing: 1px;
-        max-width: 620px;
+        letter-spacing: 0.5px;
+        max-width: 600px;
         margin: 0 auto 10px auto;
     }
 
     /* Welcome / Empty State Box */
     .cinefy-empty-box {
         text-align: center;
-        padding: 55px 25px;
+        padding: 45px 20px;
         background: rgba(18, 22, 34, 0.72);
         backdrop-filter: blur(14px);
         border: 1px dashed rgba(229, 9, 20, 0.35);
-        border-radius: 18px;
-        margin: 35px auto 45px auto;
-        max-width: 720px;
+        border-radius: 16px;
+        margin: 25px auto 35px auto;
+        max-width: 680px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        animation: slideUpFade 0.6s ease;
     }
 
     .cinefy-filmstrip-icon {
-        font-size: 3.2rem;
-        margin-bottom: 15px;
+        font-size: 2.8rem;
+        margin-bottom: 12px;
         filter: drop-shadow(0 0 12px rgba(229, 9, 20, 0.6));
     }
 
@@ -112,37 +92,61 @@ st.markdown("""
         background: rgba(18, 22, 34, 0.84);
         backdrop-filter: blur(16px);
         border: 1px solid rgba(229, 9, 20, 0.35);
-        border-radius: 18px;
-        padding: 24px;
+        border-radius: 16px;
+        padding: 20px;
         margin-top: 15px;
-        margin-bottom: 35px;
+        margin-bottom: 30px;
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
-        animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    /* Staggered Animations */
+    @keyframes slideUpFade {
+        0% {
+            opacity: 0;
+            transform: translateY(22px) scale(0.97);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .anim-card-1 { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-2 { animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-3 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-4 { animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-5 { animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
     /* Movie Cards */
     .movie-card-container {
         background: rgba(20, 24, 38, 0.76);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
+        border-radius: 12px;
         padding: 8px;
         text-align: center;
-        transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.32s ease, border-color 0.32s ease;
-        margin-bottom: 10px;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+        margin-bottom: 8px;
     }
 
     .movie-card-container:hover {
-        transform: translateY(-8px) scale(1.025);
-        box-shadow: 0 18px 35px rgba(229, 9, 20, 0.4);
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 14px 30px rgba(229, 9, 20, 0.4);
         border-color: rgba(229, 9, 20, 0.7);
     }
 
+    .movie-card-img {
+        width: 100%;
+        border-radius: 8px;
+        aspect-ratio: 2/3;
+        object-fit: cover;
+    }
+
     .movie-card-title {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 700;
         color: #f8fafc;
-        margin-top: 10px;
+        margin-top: 8px;
         margin-bottom: 4px;
         white-space: nowrap;
         overflow: hidden;
@@ -153,9 +157,9 @@ st.markdown("""
         background: rgba(229, 9, 20, 0.22);
         color: #ff6b6b;
         border: 1px solid rgba(229, 9, 20, 0.45);
-        padding: 2px 8px;
+        padding: 2px 7px;
         border-radius: 20px;
-        font-size: 0.76rem;
+        font-size: 0.74rem;
         font-weight: 600;
     }
 
@@ -163,9 +167,9 @@ st.markdown("""
         background: rgba(245, 197, 24, 0.16);
         color: #f5c518;
         border: 1px solid rgba(245, 197, 24, 0.35);
-        padding: 2px 8px;
+        padding: 2px 7px;
         border-radius: 20px;
-        font-size: 0.76rem;
+        font-size: 0.74rem;
         font-weight: 600;
     }
 
@@ -174,10 +178,10 @@ st.markdown("""
         background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 7px;
         font-weight: 600;
-        font-size: 0.85rem;
-        padding: 6px 12px;
+        font-size: 0.82rem;
+        padding: 5px 10px;
         transition: all 0.25s ease;
         width: 100%;
     }
@@ -186,6 +190,78 @@ st.markdown("""
         background: linear-gradient(135deg, #ff1e2b 0%, #d60914 100%);
         box-shadow: 0 4px 15px rgba(229, 9, 20, 0.45);
         transform: translateY(-1px);
+    }
+
+    /* Modal Styling */
+    div[data-testid="stDialog"] div[role="dialog"] {
+        background: #0f121a !important;
+        border: 1px solid rgba(229, 9, 20, 0.4) !important;
+        border-radius: 16px !important;
+    }
+
+    /* =========================================
+       DESKTOP PC STYLES (Min-width: 992px)
+       ========================================= */
+    @media (min-width: 992px) {
+        /* Modal on PC: Side-by-side with scrollable right pane to avoid tall window */
+        .modal-body-container {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+            max-height: 72vh;
+        }
+        .modal-left-col {
+            flex: 0 0 280px;
+        }
+        .modal-right-col {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 12px;
+            max-height: 70vh;
+        }
+        .modal-right-col::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-right-col::-webkit-scrollbar-thumb {
+            background: rgba(229, 9, 20, 0.5);
+            border-radius: 3px;
+        }
+    }
+
+    /* =========================================
+       MOBILE RESPONSIVE STYLES (Max-width: 768px)
+       ========================================= */
+    @media (max-width: 768px) {
+        .brand-title {
+            font-size: 2.3rem !important;
+            letter-spacing: 3px !important;
+        }
+        .brand-subtitle {
+            font-size: 0.85rem !important;
+            letter-spacing: 2px !important;
+        }
+        .brand-desc {
+            font-size: 0.78rem !important;
+            padding: 0 10px;
+        }
+        .featured-container {
+            padding: 14px !important;
+            margin-top: 10px !important;
+        }
+        .cinefy-empty-box {
+            padding: 30px 15px !important;
+            margin: 15px auto !important;
+        }
+        .cinefy-filmstrip-icon {
+            font-size: 2.2rem !important;
+        }
+        .movie-card-title {
+            font-size: 0.82rem !important;
+        }
+        div.stButton > button {
+            padding: 4px 6px !important;
+            font-size: 0.78rem !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -246,14 +322,12 @@ def fetch_movie_full_data(movie_id, title="", release_date="", fallback_info=Non
         'overview': ""
     }
     
-    # Pre-populate with fallback info from dataframe if available
     if fallback_info:
         data_out['overview'] = fallback_info.get('overview', '') or ''
         data_out['genres'] = fallback_info.get('genres_str', '') or ''
         data_out['director'] = fallback_info.get('director_str', '') or ''
         data_out['cast'] = fallback_info.get('cast_str', '') or ''
 
-    # Fetch TMDB Details
     try:
         url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&append_to_response=credits"
         res = requests.get(url, timeout=4)
@@ -287,7 +361,6 @@ def fetch_movie_full_data(movie_id, title="", release_date="", fallback_info=Non
     except Exception:
         pass
 
-    # Enrich overview with Wikipedia fallback if synopsis is still brief
     if len(data_out['overview'].strip()) < 220 and title:
         wiki_overview = fetch_detailed_synopsis_fallback(title, release_date, default_overview=data_out['overview'])
         if len(wiki_overview) > len(data_out['overview']):
@@ -323,8 +396,8 @@ def get_recommendations(selected_title, num_recommendations=10):
         })
     return recs
 
-# Modal Dialog for Movie Details (Instant Popup in English)
-@st.dialog("🎬 Movie Details & Overview")
+# Modal Dialog: Horizontal layout on PC (no vertical scrolling needed), stacked on Mobile
+@st.dialog("🎬 Movie Details & Overview", width="large")
 def show_movie_modal(movie_item):
     full_info = fetch_movie_full_data(
         movie_item['movie_id'], 
@@ -332,7 +405,8 @@ def show_movie_modal(movie_item):
         release_date=movie_item.get('release_date', ''), 
         fallback_info=movie_item
     )
-    c1, c2 = st.columns([1, 1.8])
+    
+    c1, c2 = st.columns([1, 2], gap="medium")
     with c1:
         st.image(full_info['poster_url'], use_container_width=True)
     with c2:
@@ -397,15 +471,15 @@ if not is_movie_selected:
     st.markdown("""
     <div class="cinefy-empty-box">
         <div class="cinefy-filmstrip-icon">🎞️</div>
-        <h2 style="font-weight: 800; color: #f8fafc; margin-bottom: 8px; letter-spacing: 1px;">THE CINEMA SCREEN IS WAITING</h2>
-        <p style="color: #94a3b8; font-size: 1.05rem; line-height: 1.6; max-width: 540px; margin: 0 auto;">
+        <h3 style="font-weight: 800; color: #f8fafc; margin-bottom: 8px; letter-spacing: 1px;">THE CINEMA SCREEN IS WAITING</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; max-width: 520px; margin: 0 auto;">
             Please select or search your favorite movie in the sidebar navigator to power up Cinefy AI and discover matching cinematic recommendations.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
     # Popular movies showcase with smooth staggered animation
-    st.markdown("<h4 style='text-align: center; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;'>🔥 TOP POPULAR MOVIES TO EXPLORE:</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: center; color: #cbd5e1; margin-bottom: 16px; letter-spacing: 1px;'>🔥 TOP POPULAR MOVIES TO EXPLORE:</h4>", unsafe_allow_html=True)
     popular_movies = df.sort_values(by='vote_count', ascending=False).head(5)
     cols = st.columns(5)
     for idx_col, (col, (_, m_row)) in enumerate(zip(cols, popular_movies.iterrows())):
@@ -415,7 +489,7 @@ if not is_movie_selected:
             full_data = fetch_movie_full_data(m_dict['movie_id'], title=m_dict['title'], release_date=m_dict.get('release_date', ''), fallback_info=m_dict)
             st.markdown(f"""
             <div class="movie-card-container {anim_class}">
-                <img src="{full_data['poster_url']}" style="width: 100%; border-radius: 8px;" />
+                <img src="{full_data['poster_url']}" class="movie-card-img" />
                 <div class="movie-card-title">{m_dict['title']}</div>
                 <div style="margin-top: 4px;">
                     <span class="badge-rating">⭐ {m_dict['vote_average']}</span>
@@ -438,7 +512,7 @@ else:
     )
     
     st.markdown('<div class="featured-container">', unsafe_allow_html=True)
-    col1, col2 = st.columns([1, 2.8])
+    col1, col2 = st.columns([1, 2.5], gap="medium")
     with col1:
         st.image(sel_full['poster_url'], use_container_width=True)
     with col2:
@@ -450,18 +524,18 @@ else:
         st.markdown(f"<span class='badge-rating'>⭐ {sel_dict['vote_average']} / 10 ({int(sel_dict['vote_count']):,} votes)</span> &nbsp; <span style='color:#cbd5e1;'>📅 Release: {sel_dict['release_date']} {dur_str}</span>", unsafe_allow_html=True)
         
         if sel_full.get('genres'):
-            st.markdown(f"<p style='margin-top: 14px; margin-bottom: 6px; color: #cbd5e1;'><strong>🎭 Genres:</strong> {sel_full['genres']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-top: 12px; margin-bottom: 5px; color: #cbd5e1;'><strong>🎭 Genres:</strong> {sel_full['genres']}</p>", unsafe_allow_html=True)
         if sel_full.get('director'):
-            st.markdown(f"<p style='margin-bottom: 6px; color: #cbd5e1;'><strong>🎬 Director:</strong> {sel_full['director']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-bottom: 5px; color: #cbd5e1;'><strong>🎬 Director:</strong> {sel_full['director']}</p>", unsafe_allow_html=True)
         if sel_full.get('cast'):
-            st.markdown(f"<p style='margin-bottom: 12px; color: #cbd5e1;'><strong>👥 Top Cast:</strong> {sel_full['cast']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-bottom: 10px; color: #cbd5e1;'><strong>👥 Top Cast:</strong> {sel_full['cast']}</p>", unsafe_allow_html=True)
             
         st.markdown("**Comprehensive Synopsis:**")
         st.write(sel_full['overview'] if sel_full['overview'] else "Synopsis not available.")
     st.markdown('</div>', unsafe_allow_html=True)
 
     # --- RECOMMENDATIONS GRID WITH STAGGERED SMOOTH ANIMATION ---
-    st.markdown(f"<h3 style='color: #ffffff; margin-bottom: 20px; font-weight:700;'>🍿 Similar Movies Recommended by Cinefy:</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h4 style='color: #ffffff; margin-bottom: 16px; font-weight:700;'>🍿 Similar Movies Recommended by Cinefy:</h4>", unsafe_allow_html=True)
     
     recommendations = get_recommendations(selected_movie, num_recommendations=num_recs)
     
@@ -480,9 +554,9 @@ else:
                 )
                 st.markdown(f"""
                 <div class="movie-card-container {anim_class}">
-                    <img src="{rec_full['poster_url']}" style="width: 100%; border-radius: 8px;" />
+                    <img src="{rec_full['poster_url']}" class="movie-card-img" />
                     <div class="movie-card-title" title="{rec['title']}">{rec['title']}</div>
-                    <div style="margin-top: 6px; margin-bottom: 8px;">
+                    <div style="margin-top: 5px; margin-bottom: 6px;">
                         <span class="badge-rating">⭐ {rec['vote_average']}</span>
                         <span class="badge-match">{rec['score']}%</span>
                     </div>
