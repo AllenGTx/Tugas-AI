@@ -10,42 +10,61 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom Styling with Cinema Theme, Cinefy Branding, Perfectly Centered Background & Polished UI
+# Custom Styling with Cinema Theme, Cinefy Branding, Perfectly Centered Background & Staggered Animations
 st.markdown("""
 <style>
-    /* Fullscreen Cinema Background - Centered & Fixed */
+    /* Fixed & Centered Cinema Auditorium Background */
     .stApp {
-        background: linear-gradient(rgba(10, 10, 15, 0.88), rgba(10, 10, 15, 0.94)), 
-                    url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format&fit=crop");
+        background: linear-gradient(rgba(8, 10, 15, 0.88), rgba(8, 10, 15, 0.94)), 
+                    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop");
         background-size: cover;
-        background-position: center center;
+        background-position: center top;
         background-repeat: no-repeat;
         background-attachment: fixed;
         color: #ffffff;
         font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     }
 
+    /* Staggered Fade & Slide In Animations */
+    @keyframes slideUpFade {
+        0% {
+            opacity: 0;
+            transform: translateY(28px) scale(0.97);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .anim-card-1 { animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-2 { animation: slideUpFade 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-3 { animation: slideUpFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-4 { animation: slideUpFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-card-5 { animation: slideUpFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
     /* Cinefy Brand Header */
     .brand-container {
         text-align: center;
-        padding: 30px 10px 10px 10px;
+        padding: 24px 10px 8px 10px;
+        animation: slideUpFade 0.5s ease;
     }
 
     .brand-tag-top {
         font-size: 0.85rem;
-        letter-spacing: 4px;
+        letter-spacing: 5px;
         text-transform: uppercase;
         color: #94a3b8;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 2px;
     }
 
     .brand-title {
         font-size: 3.8rem;
         font-weight: 900;
-        letter-spacing: 5px;
+        letter-spacing: 6px;
         color: #e50914;
-        text-shadow: 0 0 25px rgba(229, 9, 20, 0.55), 0 4px 10px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 0 25px rgba(229, 9, 20, 0.55), 0 4px 12px rgba(0, 0, 0, 0.9);
         margin: 0;
         line-height: 1.1;
     }
@@ -61,14 +80,14 @@ st.markdown("""
     }
 
     .brand-desc {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         color: #94a3b8;
         letter-spacing: 1px;
-        max-width: 600px;
+        max-width: 620px;
         margin: 0 auto 10px auto;
     }
 
-    /* Welcome Box / Empty State */
+    /* Welcome / Empty State Box */
     .cinefy-empty-box {
         text-align: center;
         padding: 55px 25px;
@@ -78,7 +97,8 @@ st.markdown("""
         border-radius: 18px;
         margin: 35px auto 45px auto;
         max-width: 720px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        animation: slideUpFade 0.6s ease;
     }
 
     .cinefy-filmstrip-icon {
@@ -87,34 +107,35 @@ st.markdown("""
         filter: drop-shadow(0 0 12px rgba(229, 9, 20, 0.6));
     }
 
-    /* Featured Selected Movie Card */
+    /* Selected Movie Featured Card */
     .featured-container {
-        background: rgba(18, 22, 34, 0.82);
+        background: rgba(18, 22, 34, 0.84);
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(229, 9, 20, 0.3);
+        border: 1px solid rgba(229, 9, 20, 0.35);
         border-radius: 18px;
         padding: 24px;
         margin-top: 15px;
         margin-bottom: 35px;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+        animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Movie Cards */
     .movie-card-container {
-        background: rgba(20, 24, 38, 0.75);
-        backdrop-filter: blur(10px);
+        background: rgba(20, 24, 38, 0.76);
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 14px;
         padding: 8px;
         text-align: center;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.32s ease, border-color 0.32s ease;
         margin-bottom: 10px;
     }
 
     .movie-card-container:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 16px 30px rgba(229, 9, 20, 0.35);
-        border-color: rgba(229, 9, 20, 0.65);
+        transform: translateY(-8px) scale(1.025);
+        box-shadow: 0 18px 35px rgba(229, 9, 20, 0.4);
+        border-color: rgba(229, 9, 20, 0.7);
     }
 
     .movie-card-title {
@@ -186,10 +207,34 @@ tfidf, tfidf_matrix = compute_tfidf(df)
 TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8"
 
 @st.cache_data(show_spinner=False, ttl=86400)
-def fetch_movie_full_data(movie_id, fallback_info=None):
+def fetch_detailed_synopsis_fallback(title, release_date="", default_overview=""):
     """
-    Fetches poster, full overview, tagline, runtime, genres, director, and cast
-    directly from TMDB API with comprehensive fallback to local data.
+    Fetches rich, in-depth synopsis from Wikipedia API if overview is too brief.
+    """
+    year = release_date[:4] if release_date and len(str(release_date)) >= 4 else ""
+    queries = [f"{title} ({year} film)", f"{title} (film)", title]
+    
+    for q in queries:
+        try:
+            url = f"https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=true&explaintext=true&redirects=1&titles={q}"
+            res = requests.get(url, headers={'User-Agent': 'CinefyApp/1.0'}, timeout=3)
+            data = res.json()
+            pages = data.get('query', {}).get('pages', {})
+            for pid, pdata in pages.items():
+                if pid != '-1' and 'extract' in pdata and len(pdata['extract'].strip()) > 100:
+                    extract = pdata['extract'].strip()
+                    if 'may refer to' not in extract and 'can refer to' not in extract:
+                        return extract
+        except Exception:
+            pass
+            
+    return default_overview
+
+@st.cache_data(show_spinner=False, ttl=86400)
+def fetch_movie_full_data(movie_id, title="", release_date="", fallback_info=None):
+    """
+    Fetches poster, detailed overview, tagline, runtime, genres, director, and cast
+    directly from TMDB API + Wikipedia in-depth synopsis fallback.
     """
     data_out = {
         'poster_url': "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=80",
@@ -208,6 +253,7 @@ def fetch_movie_full_data(movie_id, fallback_info=None):
         data_out['director'] = fallback_info.get('director_str', '') or ''
         data_out['cast'] = fallback_info.get('cast_str', '') or ''
 
+    # Fetch TMDB Details
     try:
         url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&append_to_response=credits"
         res = requests.get(url, timeout=4)
@@ -221,7 +267,7 @@ def fetch_movie_full_data(movie_id, fallback_info=None):
                 data_out['tagline'] = d.get('tagline')
                 
             if d.get('runtime'):
-                data_out['runtime'] = f"{d.get('runtime')} Menit"
+                data_out['runtime'] = f"{d.get('runtime')} Minutes"
                 
             if d.get('overview') and len(d.get('overview').strip()) > len(data_out['overview'].strip()):
                 data_out['overview'] = d.get('overview')
@@ -240,6 +286,12 @@ def fetch_movie_full_data(movie_id, fallback_info=None):
                 data_out['director'] = ", ".join(api_crew)
     except Exception:
         pass
+
+    # Enrich overview with Wikipedia fallback if synopsis is still brief
+    if len(data_out['overview'].strip()) < 220 and title:
+        wiki_overview = fetch_detailed_synopsis_fallback(title, release_date, default_overview=data_out['overview'])
+        if len(wiki_overview) > len(data_out['overview']):
+            data_out['overview'] = wiki_overview
         
     return data_out
 
@@ -271,10 +323,15 @@ def get_recommendations(selected_title, num_recommendations=10):
         })
     return recs
 
-# Modal Dialog for Movie Details (Instant Popup)
-@st.dialog("🎬 Detail Informasi Film")
+# Modal Dialog for Movie Details (Instant Popup in English)
+@st.dialog("🎬 Movie Details & Overview")
 def show_movie_modal(movie_item):
-    full_info = fetch_movie_full_data(movie_item['movie_id'], fallback_info=movie_item)
+    full_info = fetch_movie_full_data(
+        movie_item['movie_id'], 
+        title=movie_item['title'], 
+        release_date=movie_item.get('release_date', ''), 
+        fallback_info=movie_item
+    )
     c1, c2 = st.columns([1, 1.8])
     with c1:
         st.image(full_info['poster_url'], use_container_width=True)
@@ -284,22 +341,22 @@ def show_movie_modal(movie_item):
             st.markdown(f"*{full_info['tagline']}*")
             
         st.markdown(f"⭐ **Rating:** `{movie_item['vote_average']} / 10` ({int(movie_item.get('vote_count', 0)):,} votes)")
-        st.markdown(f"📅 **Tanggal Rilis:** `{movie_item.get('release_date', '-')}`")
+        st.markdown(f"📅 **Release Date:** `{movie_item.get('release_date', '-')}`")
         if full_info.get('runtime'):
-            st.markdown(f"⏱️ **Durasi:** `{full_info['runtime']}`")
+            st.markdown(f"⏱️ **Runtime:** `{full_info['runtime']}`")
         if full_info.get('genres'):
-            st.markdown(f"🎭 **Genre:** {full_info['genres']}")
+            st.markdown(f"🎭 **Genres:** {full_info['genres']}")
         if full_info.get('director'):
-            st.markdown(f"🎬 **Sutradara:** {full_info['director']}")
+            st.markdown(f"🎬 **Director:** {full_info['director']}")
         if full_info.get('cast'):
-            st.markdown(f"👥 **Pemeran Utama:** {full_info['cast']}")
+            st.markdown(f"👥 **Top Cast:** {full_info['cast']}")
         if 'score' in movie_item:
-            st.markdown(f"🎯 **Tingkat Kemiripan:** `{movie_item['score']}% match`")
+            st.markdown(f"🎯 **Similarity Score:** `{movie_item['score']}% match`")
         
         st.markdown("---")
-        st.markdown("**Sinopsis Lengkap:**")
+        st.markdown("**Comprehensive Synopsis:**")
         overview_text = full_info['overview'] if full_info['overview'] else movie_item.get('overview', '')
-        st.write(overview_text if overview_text else "Sinopsis belum tersedia.")
+        st.write(overview_text if overview_text else "Synopsis not available.")
 
 # --- CINEFY BRAND HEADER ---
 st.markdown("""
@@ -314,49 +371,50 @@ st.markdown("""
 # --- SIDEBAR CONFIGURATION ---
 st.sidebar.markdown("### 🎬 Cinefy Navigator")
 
-movie_titles = ["-- Pilih atau Cari Judul Film --"] + list(df['title'].values)
+movie_titles = ["-- Select or Search a Movie --"] + list(df['title'].values)
 selected_movie_raw = st.sidebar.selectbox(
-    "Cari Film Favorit Anda:",
+    "Choose Your Favorite Movie:",
     movie_titles,
     index=0
 )
 
-num_recs = st.sidebar.slider("Jumlah Rekomendasi Ditampilkan:", min_value=5, max_value=20, value=10, step=5)
+num_recs = st.sidebar.slider("Recommendations Count:", min_value=5, max_value=20, value=10, step=5)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 💡 Tentang Sistem AI Cinefy")
+st.sidebar.markdown("### 💡 About Cinefy AI")
 st.sidebar.caption("""
 - **Model:** Content-Based Filtering
-- **Ekstraksi Fitur:** Genre, Keywords, Top Cast, & Director
-- **Algoritma:** TF-IDF Vectorizer
-- **Metrik:** Cosine Distance Similarity
-- **Data Fallback:** TMDB Real-time Sync
+- **Features Extracted:** Genres, Keywords, Top Cast, & Directors
+- **Vectorizer:** TF-IDF
+- **Metric:** Cosine Similarity
+- **Data Fallback:** TMDB & Wikipedia Real-Time Sync
 """)
 
-is_movie_selected = (selected_movie_raw != "-- Pilih atau Cari Judul Film --")
+is_movie_selected = (selected_movie_raw != "-- Select or Search a Movie --")
 
 if not is_movie_selected:
-    # --- EMPTY STATE (Awal saat belum ada input) ---
+    # --- EMPTY STATE (Initial Load) ---
     st.markdown("""
     <div class="cinefy-empty-box">
         <div class="cinefy-filmstrip-icon">🎞️</div>
-        <h2 style="font-weight: 800; color: #f8fafc; margin-bottom: 8px; letter-spacing: 1px;">LAYAR BIOSKOP MASIH KOSONG</h2>
+        <h2 style="font-weight: 800; color: #f8fafc; margin-bottom: 8px; letter-spacing: 1px;">THE CINEMA SCREEN IS WAITING</h2>
         <p style="color: #94a3b8; font-size: 1.05rem; line-height: 1.6; max-width: 540px; margin: 0 auto;">
-            Pilih atau ketik judul film favorit Anda di menu navigasi sebelah kiri untuk memutar mesin AI Cinefy dan menemukan rekomendasi film yang sejiwa.
+            Please select or search your favorite movie in the sidebar navigator to power up Cinefy AI and discover matching cinematic recommendations.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    # Populer showcase
-    st.markdown("<h4 style='text-align: center; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;'>🔥 PILIHAN FILM TERPOPULER:</h4>", unsafe_allow_html=True)
+    # Popular movies showcase with smooth staggered animation
+    st.markdown("<h4 style='text-align: center; color: #cbd5e1; margin-bottom: 20px; letter-spacing: 1px;'>🔥 TOP POPULAR MOVIES TO EXPLORE:</h4>", unsafe_allow_html=True)
     popular_movies = df.sort_values(by='vote_count', ascending=False).head(5)
     cols = st.columns(5)
-    for col, (_, m_row) in zip(cols, popular_movies.iterrows()):
+    for idx_col, (col, (_, m_row)) in enumerate(zip(cols, popular_movies.iterrows())):
+        anim_class = f"anim-card-{idx_col + 1}"
         with col:
             m_dict = m_row.to_dict()
-            full_data = fetch_movie_full_data(m_dict['movie_id'], fallback_info=m_dict)
+            full_data = fetch_movie_full_data(m_dict['movie_id'], title=m_dict['title'], release_date=m_dict.get('release_date', ''), fallback_info=m_dict)
             st.markdown(f"""
-            <div class="movie-card-container">
+            <div class="movie-card-container {anim_class}">
                 <img src="{full_data['poster_url']}" style="width: 100%; border-radius: 8px;" />
                 <div class="movie-card-title">{m_dict['title']}</div>
                 <div style="margin-top: 4px;">
@@ -364,15 +422,20 @@ if not is_movie_selected:
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            if st.button("Lihat Detail", key=f"pop_{m_dict['movie_id']}"):
+            if st.button("View Details", key=f"pop_{m_dict['movie_id']}"):
                 show_movie_modal(m_dict)
 
 else:
-    # --- JIKA USER SUDAH MEMILIH FILM ---
+    # --- MOVIE SELECTED STATE ---
     selected_movie = selected_movie_raw
     sel_row = df[df['title'] == selected_movie].iloc[0]
     sel_dict = sel_row.to_dict()
-    sel_full = fetch_movie_full_data(sel_dict['movie_id'], fallback_info=sel_dict)
+    sel_full = fetch_movie_full_data(
+        sel_dict['movie_id'], 
+        title=sel_dict['title'], 
+        release_date=sel_dict.get('release_date', ''), 
+        fallback_info=sel_dict
+    )
     
     st.markdown('<div class="featured-container">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2.8])
@@ -384,21 +447,21 @@ else:
             st.markdown(f"<p style='color: #94a3b8; font-style: italic; margin-top: -8px;'>\"{sel_full['tagline']}\"</p>", unsafe_allow_html=True)
             
         dur_str = f"&nbsp; • &nbsp; ⏱️ {sel_full['runtime']}" if sel_full.get('runtime') else ""
-        st.markdown(f"<span class='badge-rating'>⭐ {sel_dict['vote_average']} / 10 ({int(sel_dict['vote_count']):,} votes)</span> &nbsp; <span style='color:#cbd5e1;'>📅 Rilis: {sel_dict['release_date']} {dur_str}</span>", unsafe_allow_html=True)
+        st.markdown(f"<span class='badge-rating'>⭐ {sel_dict['vote_average']} / 10 ({int(sel_dict['vote_count']):,} votes)</span> &nbsp; <span style='color:#cbd5e1;'>📅 Release: {sel_dict['release_date']} {dur_str}</span>", unsafe_allow_html=True)
         
         if sel_full.get('genres'):
-            st.markdown(f"<p style='margin-top: 14px; margin-bottom: 6px; color: #cbd5e1;'><strong>🎭 Genre:</strong> {sel_full['genres']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-top: 14px; margin-bottom: 6px; color: #cbd5e1;'><strong>🎭 Genres:</strong> {sel_full['genres']}</p>", unsafe_allow_html=True)
         if sel_full.get('director'):
-            st.markdown(f"<p style='margin-bottom: 6px; color: #cbd5e1;'><strong>🎬 Sutradara:</strong> {sel_full['director']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-bottom: 6px; color: #cbd5e1;'><strong>🎬 Director:</strong> {sel_full['director']}</p>", unsafe_allow_html=True)
         if sel_full.get('cast'):
-            st.markdown(f"<p style='margin-bottom: 12px; color: #cbd5e1;'><strong>👥 Pemeran:</strong> {sel_full['cast']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='margin-bottom: 12px; color: #cbd5e1;'><strong>👥 Top Cast:</strong> {sel_full['cast']}</p>", unsafe_allow_html=True)
             
-        st.markdown("**Sinopsis Lengkap:**")
-        st.write(sel_full['overview'] if sel_full['overview'] else sel_dict.get('overview', 'Sinopsis tidak tersedia.'))
+        st.markdown("**Comprehensive Synopsis:**")
+        st.write(sel_full['overview'] if sel_full['overview'] else "Synopsis not available.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- LIST REKOMENDASI ---
-    st.markdown(f"<h3 style='color: #ffffff; margin-bottom: 20px; font-weight:700;'>🍿 Rekomendasi Film Serupa dari Cinefy:</h3>", unsafe_allow_html=True)
+    # --- RECOMMENDATIONS GRID WITH STAGGERED SMOOTH ANIMATION ---
+    st.markdown(f"<h3 style='color: #ffffff; margin-bottom: 20px; font-weight:700;'>🍿 Similar Movies Recommended by Cinefy:</h3>", unsafe_allow_html=True)
     
     recommendations = get_recommendations(selected_movie, num_recommendations=num_recs)
     
@@ -406,11 +469,17 @@ else:
     for row_idx in range(0, len(recommendations), cols_per_row):
         row_recs = recommendations[row_idx:row_idx + cols_per_row]
         cols = st.columns(cols_per_row)
-        for col, rec in zip(cols, row_recs):
+        for col_idx, (col, rec) in enumerate(zip(cols, row_recs)):
+            anim_class = f"anim-card-{(col_idx % 5) + 1}"
             with col:
-                rec_full = fetch_movie_full_data(rec['movie_id'], fallback_info=rec)
+                rec_full = fetch_movie_full_data(
+                    rec['movie_id'], 
+                    title=rec['title'], 
+                    release_date=rec.get('release_date', ''), 
+                    fallback_info=rec
+                )
                 st.markdown(f"""
-                <div class="movie-card-container">
+                <div class="movie-card-container {anim_class}">
                     <img src="{rec_full['poster_url']}" style="width: 100%; border-radius: 8px;" />
                     <div class="movie-card-title" title="{rec['title']}">{rec['title']}</div>
                     <div style="margin-top: 6px; margin-bottom: 8px;">
@@ -421,5 +490,5 @@ else:
                 """, unsafe_allow_html=True)
                 
                 # Button Popup Modal Detail
-                if st.button("Lihat Detail", key=f"rec_{rec['movie_id']}"):
+                if st.button("View Details", key=f"rec_{rec['movie_id']}"):
                     show_movie_modal(rec)
