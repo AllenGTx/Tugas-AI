@@ -1,45 +1,57 @@
-# 🎬 Movie Recommendation System
+# 🎬 Cinefy - Movie Recommendation System
 
-Aplikasi web rekomendasi film berbasis Machine Learning menggunakan algoritma **TF-IDF Vectorizer** dan **Cosine Similarity** yang dibuat menggunakan **Streamlit**.
+**Cinefy** is an intelligent, AI-powered movie recommendation web application built with Python and **Streamlit**. It delivers personalized movie recommendations using **Content-Based Filtering** algorithms with natural language feature extraction, TF-IDF vectorization, and Cosine Distance similarity.
 
 ---
 
-## 🚀 Cara Menjalankan di Lokal
+## 📌 About The Application
 
-1. Pastikan Python sudah terinstal.
-2. Install dependensi:
+Cinefy acts as your personal cinema movie guide, helping users discover new films that match their taste based on deep textual and metadata relationships:
+
+- **AI Content-Based Filtering**: Recommends movies not just by single tags, but by extracting high-dimensional patterns from combined genres, plot keywords, top cast actors, and directors.
+- **Smart Dual-API Synchronization**: Seamlessly pulls high-resolution posters, trailers, runtimes, taglines, and ratings from **The Movie Database (TMDB) API**, backed with an automatic **Wikipedia API fallback** for rich, comprehensive plot synopses.
+- **Interactive Cinema Experience**: Features an immersive, responsive theater-themed UI with smooth staggered entrance animations, empty-state exploration of popular titles, and detailed side-by-side modal dialogs for desktop and mobile.
+
+---
+
+## 🧠 Machine Learning & Architecture
+
+1. **Feature Engineering**:
+   - Extraction of key metadata: `genres`, `keywords`, `top 3 actors`, and `directors`.
+   - Text normalization and tokenization into a unified content vector representation.
+2. **TF-IDF Vectorization**:
+   - Evaluates the significance of words across the entire 4,800+ TMDB movie dataset using `TfidfVectorizer(stop_words='english')`.
+3. **Cosine Similarity**:
+   - Calculates the directional cosine angle between the target movie's vector and the rest of the film catalog:
+     $$\text{Cosine Similarity}(A, B) = \frac{A \cdot B}{\|A\| \|B\|}$$
+   - Returns top $N$ closest matches ranked by match percentage.
+
+---
+
+## 🚀 Running Locally
+
+1. Clone or download this repository:
+   ```bash
+   git clone https://github.com/AllenGTx/Tugas-AI.git
+   cd Tugas-AI
+   ```
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Jalankan aplikasi Streamlit:
+3. Launch the Streamlit web app:
    ```bash
    streamlit run app.py
    ```
-4. Buka browser pada alamat `http://localhost:8501`.
+4. Open your browser at `http://localhost:8501`.
 
 ---
 
-## ☁️ Cara Deploy ke Streamlit Community Cloud (Gratis & Otomatis)
+## 🛠️ Built With
 
-1. **Upload ke GitHub:**
-   - Buat repositori baru di GitHub (misal: `movie-recommender`).
-   - Push folder proyek ini ke repositori tersebut:
-     ```bash
-     git init
-     git add app.py requirements.txt movies_clean.parquet README.md .gitignore
-     git commit -m "Initial commit for deployment"
-     git branch -M main
-     git remote add origin https://github.com/<USERNAME>/<NAMA-REPO>.git
-     git push -u origin main
-     ```
-2. **Deploy di Streamlit Cloud:**
-   - Kunjungi [share.streamlit.io](https://share.streamlit.io/) dan login dengan akun GitHub Anda.
-   - Klik **"New app"**.
-   - Pilih repository Anda, branch `main`, dan set **Main file path** ke `app.py`.
-   - Klik **"Deploy!"**.
-   - Aplikasi akan otomatis online dalam hitungan detik. Setiap kali Anda melakukan git push, aplikasi akan ter-update otomatis.
-
----
-
-## ⚡ Catatan untuk Deploy Vercel
-Vercel didesain untuk Next.js/Node.js/serverless static sites dengan limit ukuran lambda & eksekusi 10-15 detik, sehingga **Streamlit Community Cloud** adalah pilihan standar industri paling optimal, otomatis, gratis, dan native untuk aplikasi Python AI/ML seperti ini.
+- **Python 3.10+**
+- **Streamlit** (Web Application & Interactive UI)
+- **Scikit-learn** (TF-IDF & Cosine Similarity)
+- **Pandas & PyArrow** (Optimized Parquet Data Processing)
+- **TMDB REST API** (Live Movie Posters & Metadata)
+- **Wikipedia REST API** (In-Depth Synopsis Fallback)
